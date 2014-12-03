@@ -22,6 +22,7 @@ public class TestGEBizUrlGettingID {
 			final StringBuilder strBuilder = new StringBuilder();
 			String line;
 			while ( null != ( line = bufferedReader.readLine() ) ) {
+				strBuilder.append( "\n" );
 				strBuilder.append(line);
 			}
 			bufferedReader.close();
