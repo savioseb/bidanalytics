@@ -1,10 +1,12 @@
 package com.sav.bidanalytics.beans.impl;
 
 import com.google.gson.Gson;
+import com.sav.bidanalytics.beans.api.IPersist;
 
-public final class TenderInfo {
+public final class TenderInfo implements IPersist {
 	
 	private String no;
+	private String reference;
 	private String description;
 	private String publicationDate;
 	private String closingDate;
@@ -14,6 +16,7 @@ public final class TenderInfo {
 	private String status;
 	private String url;
 	private transient int index;
+	private transient boolean isPersisted;
 	
 	@Override
 	public String toString() {
@@ -23,6 +26,8 @@ public final class TenderInfo {
 	public String toCSV() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append( no );
+		strBuilder.append( ", " );
+		strBuilder.append( "\"" ).append( reference.replaceAll("\"", "\"\"" ).replaceAll( "\n", " " ) ).append( "\"");
 		strBuilder.append( ", " );
 		strBuilder.append( "\"" ).append( description.replaceAll("\"", "\"\"" ).replaceAll( "\n", " " ) ).append( "\"");
 		strBuilder.append( ", " );
@@ -111,6 +116,24 @@ public final class TenderInfo {
 
 	public void setSubmissionType(String submissionType) {
 		this.submissionType = submissionType;
+	}
+
+	public String getReference() {
+		return reference;
+	}
+
+	public void setReference(String reference) {
+		this.reference = reference;
+	}
+
+	@Override
+	public boolean isPersisted() {
+		return isPersisted;
+	}
+
+	@Override
+	public void setPersisted(boolean isPersisted) {
+		this.isPersisted = isPersisted;
 	}
 	
 	
